@@ -7,10 +7,13 @@ class Movie:
 
     df = pd.DataFrame()
 
-    def __init__(self, length, genre):
+    def __init__(self, name, length, genre):
+        self.name = name
         self.length = length
         self.genre = genre
         # add to db
+    def __repr__(self):
+        return self.name
     
     def change_length(self, length):
         self.length = length
@@ -21,3 +24,7 @@ class Movie:
     def delete(self):
         # delete from db
         pass
+
+if __name__ == '__main__':
+    new_movie = Movie('John Wick', 'long', 'action')
+    print(new_movie)

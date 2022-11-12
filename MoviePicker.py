@@ -2,6 +2,7 @@
 
 from movie_func import MoviePicker
 
+db = []
+
 if __name__ == '__main__':
-    dec = input("Hello! What do you want me to do?\nPick / Add / Exit\n")
-    print(MoviePicker(dec))
+    print(MoviePicker(db))
