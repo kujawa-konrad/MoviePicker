@@ -18,8 +18,11 @@ def MoviePicker(db):
             return chosen
         elif dec == "Add":
             name = input('Enter the name of the movie\n')
-            lenght = input('Enter the lenght of the movie in minutes\n')
-            genre = input('Enter the genre of the movie\n')
+            if name in db:
+                return 'This movie is already in the database'
+            else:
+                lenght = input('Enter the lenght of the movie in minutes\n')
+                genre = input('Enter the genre of the movie\n')
             new_movie = Movie(name, lenght, genre)
 
             # Here new entry will be added to db using Pandas
