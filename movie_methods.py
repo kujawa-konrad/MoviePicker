@@ -1,7 +1,12 @@
 # Class for every movie in db to choose from
 # It would be nice to create lenght ranges for self.length based on given time in minutes
 
+import pandas as pd
+
 class Movie:
+
+    df = pd.DataFrame()
+
     def __init__(self, length, genre):
         self.length = length
         self.genre = genre
