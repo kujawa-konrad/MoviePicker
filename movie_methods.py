@@ -7,13 +7,17 @@ class Movie:
 
     # Class will operate using pandas dataframe
 
-    def __init__(self, name, length, genre):
-        self.name = name
+    def __init__(self, title, length, genre):
+        self.title = title
         self.length = length
         self.genre = genre
         # add to db
+        
     def __repr__(self):
-        return self.name
+        return self.title
+    
+    def change_title(self, title):
+        self.title = title
     
     def change_length(self, length):
         self.length = length

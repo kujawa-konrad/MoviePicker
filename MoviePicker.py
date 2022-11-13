@@ -3,9 +3,7 @@
 from movie_func import MoviePicker
 import pandas as pd
 
-new_row = pd.Series()
-df = pd.DataFrame()
-df = df.append(new_row, ignore_index=True)
+df = pd.DataFrame(columns=['Title', 'Lenght', 'Genre'])
 
 if __name__ == '__main__':
     print(MoviePicker(df))
