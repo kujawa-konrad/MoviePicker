@@ -5,7 +5,7 @@ import pandas as pd
 
 class Movie:
 
-    df = pd.DataFrame()
+    # Class will operate using pandas dataframe
 
     def __init__(self, name, length, genre):
         self.name = name
