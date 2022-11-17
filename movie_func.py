@@ -27,7 +27,11 @@ def MoviePicker(db):
             else:
                 lenght = input('Enter the lenght of the movie in minutes\n')
                 genre = input('Enter the genre of the movie\n')
-            new_movie = Movie(title, lenght, genre)
+            try:
+                new_movie = Movie(title, lenght, genre)
+            except ValueError as e:
+                print(e)
+                continue
 
             new_row = pd.DataFrame([[new_movie.title, new_movie.length, new_movie.genre]], columns=['Title', 'Lenght', 'Genre'])
             db = pd.concat([db, new_row], ignore_index=True)
