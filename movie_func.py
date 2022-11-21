@@ -14,9 +14,17 @@ def MoviePicker(db):
             print('Bye!')
             break
         elif dec == "Pick":
+            # Need to add option to search from every genre and every lenght
+            lenght = input('Enter the lenght of the movie\nShort / Normal / Long\n')
+            if lenght not in ['Short', 'Normal', 'Long']:
+                print('Unknown lenght\n')
+                continue
+            genre = input('Enter the genre of the movie\n')
+            if genre not in db['Genre'].unique():
+                print('Unknown genre')
+                continue
 
-            # Logic to pick by some params needed here
-            chosen = db.sample()['Title'].item()
+            chosen = db[(db['Lenght']==lenght)&(db['Genre']==genre)].sample()['Title'].item()
             print(f'Recommended movie is "{chosen}"')
             break
         elif dec == "Add":
