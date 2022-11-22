@@ -23,18 +23,20 @@ def MoviePicker(db):
             if genre not in db['Genre'].unique() and genre != '':
                 print('Unknown genre')
                 continue
-
-            if length == '' and genre == '':
-                chosen = db.sample()['Title'].item()
-            elif length == '':
-                chosen = db[(db['Genre']==genre)].sample()['Title'].item()
-            elif genre == '':
-                chosen = db[(db['Length']==length)].sample()['Title'].item()
-            else:
-                chosen = db[(db['Length']==length)&(db['Genre']==genre)].sample()['Title'].item()
+            
+            try:
+                if length == '' and genre == '':
+                    chosen = db.sample()['Title'].item()
+                elif length == '':
+                    chosen = db[(db['Genre']==genre)].sample()['Title'].item()
+                elif genre == '':
+                    chosen = db[(db['Length']==length)].sample()['Title'].item()
+                else:
+                    chosen = db[(db['Length']==length)&(db['Genre']==genre)].sample()['Title'].item()
+            except:
+                print('There was no entries in database with given requirements\n')
+                continue
                 
-            # Have to add exception when there's no entries with given requirements in database
-
             print(f'Recommended movie is "{chosen}"')
             break
         elif dec == "Add":
