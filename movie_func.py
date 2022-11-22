@@ -14,6 +14,9 @@ def MoviePicker(db):
             print('Bye!')
             break
         elif dec == "Pick":
+
+            # Probably it would be good to add function which hides already watched movies
+
             length = input('Enter the length of the movie\nShort / Normal / Long\n')
             if length not in ['Short', 'Normal', 'Long'] and length != '':
                 print('Unknown length\n')
