@@ -6,6 +6,7 @@ class Movie:
 
     # Class will operate using pandas dataframe
     def assign_interval(self, length):
+        length = str(length)
         if length.isnumeric() is False:
             raise ValueError("Error: Length must be defined using minutes")
         else:
@@ -42,5 +43,5 @@ class Movie:
         pass
 
 if __name__ == '__main__':
-    new_movie = Movie('John Wick', 'long', 'action')
+    new_movie = Movie('John Wick', 101, 'action')
     print(new_movie)
