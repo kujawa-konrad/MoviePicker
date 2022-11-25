@@ -53,6 +53,8 @@ def MoviePicker(db):
 
         elif dec == "Add":
             title = input('Enter the title of the movie\n')
+
+            # This part can be moved to Movie class where it will be handled during creation of an instance
             if (db['Title'].eq(title)).any():
                 print('This movie is already in the database')
                 continue
