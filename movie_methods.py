@@ -19,12 +19,14 @@ class Movie:
                 interval = 'Long'
             return interval
 
-
-    def __init__(self, title, length, genre):
+    def __init__(self, database, title, length, genre):
         self.title = title
         self.length = self.assign_interval(length)
         self.genre = genre
-        # add to db
+        self.database = database
+
+        new_row = pd.DataFrame([[self.title, self.length, self.genre, 'N']], columns=['Title', 'Length', 'Genre', 'Watched'])
+        self.database = pd.concat([self.database, new_row], ignore_index=True)
         
     def __repr__(self):
         return self.title
@@ -41,7 +43,3 @@ class Movie:
     def delete(self):
         # delete from db
         pass
-
-if __name__ == '__main__':
-    new_movie = Movie('John Wick', 101, 'action')
-    print(new_movie)

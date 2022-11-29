@@ -54,23 +54,20 @@ def MoviePicker(db):
         elif dec == "Add":
             title = input('Enter the title of the movie\n')
 
-            # This part can be moved to Movie class where it will be handled during creation of an instance
             if (db['Title'].eq(title)).any():
-                print('This movie is already in the database')
+                print('\nThis movie is already in the database\n')
                 continue
             else:
                 length = input('Enter the length of the movie in minutes\n')
                 genre = input('Enter the genre of the movie\n')
             try:
-                new_movie = Movie(title, length, genre)
+                new_movie = Movie(db, title, length, genre)
             except ValueError as e:
                 print(e)
                 continue
 
-            new_row = pd.DataFrame([[new_movie.title, new_movie.length, new_movie.genre, 'N']], columns=['Title', 'Length', 'Genre', 'Watched'])
-            db = pd.concat([db, new_row], ignore_index=True)
             print(f"You've added a {new_movie.title} movie to your database")
-            return db
+            return new_movie.database
         else:
             print('Unknown command')
 
