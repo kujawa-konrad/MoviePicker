@@ -8,10 +8,10 @@ def MoviePicker(db):
     print('Hello!')
 
     while True:
-        dec = input("What do you want me to do?\nPick / Add / Exit\n")
+        dec = input("\nWhat do you want me to do?\nPick / Add / Exit\n\n")
 
         if dec == "Exit":
-            print('Bye!')
+            print('\nBye!')
             break
         elif dec == "Pick":
 
@@ -22,7 +22,7 @@ def MoviePicker(db):
 
             genre = input('Enter the genre of the movie\n')
             if genre not in db['Genre'].unique() and genre != '':
-                print('Unknown genre')
+                print('Unknown genre\n')
                 continue
             
             try:
@@ -38,12 +38,12 @@ def MoviePicker(db):
                 print('There was no entries in database with given requirements\n')
                 continue
                 
-            print(f'Recommended movie is "{chosen}"')
+            print(f'Recommended movie is "{chosen}"\n')
 
             while True:
                 watch = input('Are you going to watch this? [Y / N]\n')
                 if watch not in ['Y', 'N']:
-                    print('Please select "Y" or "N"')
+                    print('Please select "Y" or "N"\n')
                     continue
                 elif watch == 'Y':
                     db.loc[db['Title']==chosen, 'Watched'] = watch
@@ -66,10 +66,10 @@ def MoviePicker(db):
                 print(e)
                 continue
 
-            print(f"You've added a {new_movie.title} movie to your database")
+            print(f"You've added a {new_movie.title} movie to your database\n")
             return new_movie.database
         else:
-            print('Unknown command')
+            print('Unknown command\n')
 
 if __name__ == '__main__':
     data = {'Title':['Inception', 'Pirates of the Caribbean', 'John Wick'], 'Length':['Long', 'Long', 'Long'], 'Genre':['Thriller', 'Adventure', 'Action'], 'Watched':['N', 'N', 'N']}
