@@ -25,31 +25,46 @@ def MoviePicker(db):
                 print('Unknown genre\n')
                 continue
             
+            # try:
+            #     if length == '' and genre == '':
+            #         chosen = db[(db['Watched']=='N')].sample()['Title'].item()
+            #     elif length == '':
+            #         chosen = db[(db['Genre']==genre)&(db['Watched']=='N')].sample()['Title'].item()
+            #     elif genre == '':
+            #         chosen = db[(db['Length']==length)&(db['Watched']=='N')].sample()['Title'].item()
+            #     else:
+            #         chosen = db[(db['Length']==length)&(db['Genre']==genre)&(db['Watched']=='N')].sample()['Title'].item()
+            # except:
+            #     print('There was no entries in database with given requirements\n')
+            #     continue
+            
             try:
                 if length == '' and genre == '':
-                    chosen = db[(db['Watched']=='N')].sample()['Title'].item()
+                    chosen = db.sample()['Title'].item()
                 elif length == '':
-                    chosen = db[(db['Genre']==genre)&(db['Watched']=='N')].sample()['Title'].item()
+                    chosen = db[(db['Genre']==genre)].sample()['Title'].item()
                 elif genre == '':
-                    chosen = db[(db['Length']==length)&(db['Watched']=='N')].sample()['Title'].item()
+                    chosen = db[(db['Length']==length)].sample()['Title'].item()
                 else:
-                    chosen = db[(db['Length']==length)&(db['Genre']==genre)&(db['Watched']=='N')].sample()['Title'].item()
+                    chosen = db[(db['Length']==length)&(db['Genre']==genre)].sample()['Title'].item()
             except:
                 print('There was no entries in database with given requirements\n')
                 continue
                 
             print(f'Recommended movie is "{chosen}"\n')
 
-            while True:
-                watch = input('Are you going to watch this? [Y / N]\n')
-                if watch not in ['Y', 'N']:
-                    print('Please select "Y" or "N"\n')
-                    continue
-                elif watch == 'Y':
-                    db.loc[db['Title']==chosen, 'Watched'] = watch
-                    break
-                else:
-                    break
+            # The part below will be replaced by second table in SQL database
+            
+            # while True:
+            #     watch = input('Are you going to watch this? [Y / N]\n')
+            #     if watch not in ['Y', 'N']:
+            #         print('Please select "Y" or "N"\n')
+            #         continue
+            #     elif watch == 'Y':
+            #         db.loc[db['Title']==chosen, 'Watched'] = watch
+            #         break
+            #     else:
+            #         break
 
         elif dec == "Add":
             title = input('Enter the title of the movie\n')
@@ -72,7 +87,7 @@ def MoviePicker(db):
             print('Unknown command\n')
 
 if __name__ == '__main__':
-    data = {'Title':['Inception', 'Pirates of the Caribbean', 'John Wick'], 'Length':['Long', 'Long', 'Long'], 'Genre':['Thriller', 'Adventure', 'Action'], 'Watched':['N', 'N', 'N']}
+    data = {'Title':['Inception', 'Werewolf by Night', 'Pirates of the Caribbean', 'John Wick'], 'Length':['Long', 'Short', 'Long', 'Normal'], 'Genre':['Thriller', 'Action', 'Adventure', 'Action'], 'Watched':['N', 'N', 'N', 'N']}
     test_df = pd.DataFrame(data)
     db_check = MoviePicker(test_df)
     if db_check is not None:

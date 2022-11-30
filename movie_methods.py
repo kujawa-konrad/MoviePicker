@@ -25,6 +25,7 @@ class Movie:
         self.genre = genre
         self.database = database
 
+        # 'Watch' column functionality will be replaced by second table in SQL database
         new_row = pd.DataFrame([[self.title, self.length, self.genre, 'N']], columns=['Title', 'Length', 'Genre', 'Watched'])
         self.database = pd.concat([self.database, new_row], ignore_index=True)
         
