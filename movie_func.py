@@ -55,6 +55,11 @@ def MoviePicker(db):
 
             # The part below will be replaced by second table in SQL database
             
+            # if 'Y' ->  rows = ...       new_df = ...       conn = ...
+            # new_df = new_df.append(rows, ignore_index=True)
+            # db.drop(rows.index, inplace=True)
+            # new_df.to_sql('Watched', conn, if_exists='append')
+
             # while True:
             #     watch = input('Are you going to watch this? [Y / N]\n')
             #     if watch not in ['Y', 'N']:
