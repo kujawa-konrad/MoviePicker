@@ -4,7 +4,6 @@ import pandas as pd
 
 class Movie:
 
-    # Class will operate using pandas dataframe
     def assign_interval(self, length):
         length = str(length)
         if length.isnumeric() is False:
@@ -25,8 +24,7 @@ class Movie:
         self.genre = genre
         self.database = database
 
-        # 'Watch' column functionality will be replaced by second table in SQL database
-        new_row = pd.DataFrame([[self.title, self.length, self.genre, 'N']], columns=['Title', 'Length', 'Genre', 'Watched'])
+        new_row = pd.DataFrame([[self.title, self.length, self.genre]], columns=['Title', 'Length', 'Genre'])
         self.database = pd.concat([self.database, new_row], ignore_index=True)
         
     def __repr__(self):
