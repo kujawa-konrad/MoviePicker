@@ -25,16 +25,18 @@ def MoviePicker(sql_db):
             print('\nBye!')
             break
         elif dec == "Pick":
+            
+            while True:
+                length = input('Enter the length of the movie\nShort / Normal / Long\n')
+                if length not in ['Short', 'Normal', 'Long'] and length != '':
+                    print('Unknown length\n')
+                    continue
 
-            length = input('Enter the length of the movie\nShort / Normal / Long\n')
-            if length not in ['Short', 'Normal', 'Long'] and length != '':
-                print('Unknown length\n')
-                continue
-
-            genre = input('Enter the genre of the movie\n')
-            if genre not in db['Genre'].unique() and genre != '':
-                print('Unknown genre\n')
-                continue
+                genre = input('Enter the genre of the movie\n')
+                if genre not in db['Genre'].unique() and genre != '':
+                    print('Unknown genre\n')
+                    continue
+                break
             
             try:
                 if length == '' and genre == '':
